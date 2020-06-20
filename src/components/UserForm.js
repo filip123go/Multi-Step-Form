@@ -9,6 +9,8 @@ export class UserForm extends Component {
         step: 1,
         firstName: '',
         lastName: '',
+        userName: '',
+        password: '',
         email: '',
         occupation: '',
         city: '',
@@ -36,8 +38,8 @@ export class UserForm extends Component {
 
     render() {
         const {step} = this.state;
-        const {firstName, lastName, email, occupation, city, bio} = this.state;
-        const values = {firstName, lastName, email, occupation, city, bio};
+        const {firstName, lastName, userName, password, email, occupation, city, bio} = this.state;
+        const values = {firstName, lastName, userName, password, email, occupation, city, bio};
 
         switch (step) {
             case 1:

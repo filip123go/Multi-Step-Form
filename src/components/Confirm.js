@@ -3,11 +3,16 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios';
 
 export class Confirm extends Component {
     continue = e => {
         e.preventDefault();
-        //PROCESS FORM
+        const {values: {firstName, lastName, userName, password, email, occupation, city, bio}} = this.props;
+        axios.post(`http://localhost:8080/register`, { firstName: firstName, lastName : lastName, userName: userName, password: password, email: email, occupation: occupation, city: city, bio: bio })
+            .then(res => {
+                console.log(res.data);
+            });
         this.props.nextStep();
     };
 
@@ -17,7 +22,7 @@ export class Confirm extends Component {
     };
 
     render() {
-        const {values: {firstName, lastName, email, occupation, city, bio}} = this.props;
+        const {values: {firstName, lastName, userName, password, email, occupation, city, bio}} = this.props;
         return (
             <MuiThemeProvider>
                 <React.Fragment>
@@ -26,6 +31,18 @@ export class Confirm extends Component {
                         <ListItem
                             primaryText="First Name"
                             secondaryText={firstName}
+                        />
+                        <ListItem
+                            primaryText="Last Name"
+                            secondaryText={lastName}
+                        />
+                        <ListItem
+                            primaryText="User Name"
+                            secondaryText={userName}
+                        />
+                        <ListItem
+                            primaryText="Password"
+                            secondaryText={password}
                         />
                         <ListItem
                             primaryText="Last Name"
